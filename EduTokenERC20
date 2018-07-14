@@ -4,6 +4,8 @@ import "./TokenERC20.sol";
 
 contract EduTokenERC20 is TokenERC20, owned{
 
+    uint256 public rewardTimes = 1000;
+
     function EduTokenERC20(
         uint256 initialSupply,
         string tokenName,
