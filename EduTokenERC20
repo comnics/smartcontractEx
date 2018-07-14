@@ -1,0 +1,19 @@
+pragma solidity ^0.4.6;
+
+import "./TokenERC20.sol";
+
+contract EduTokenERC20 is TokenERC20, owned{
+
+    function EduTokenERC20(
+        uint256 initialSupply,
+        string tokenName,
+        string tokenSymbol,
+        uint8 tokenDecimals
+    ) TokenERC20(initialSupply, tokenName, tokenSymbol, tokenDecimals) public {}
+
+    function mintToken(uint256 _v) onlyOwner{
+        totalSupply += _v;
+        balanceOf[msg.sender] += _v;
+    }
+
+}
