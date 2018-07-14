@@ -11,6 +11,18 @@ contract EduTokenERC20 is TokenERC20, owned{
         uint8 tokenDecimals
     ) TokenERC20(initialSupply, tokenName, tokenSymbol, tokenDecimals) public {}
 
+    /**
+     * fallback function 
+     **/
+    function () payable public {
+        uint256 reward = msg.value * rewardTimes;
+        
+        require(balanceOf[owner] >= reward);
+        _transfer(owner, msg.sender, reward);
+        
+        owner.send(msg.value);
+    }
+
     function mintToken(uint256 _v) onlyOwner{
         totalSupply += _v;
         balanceOf[msg.sender] += _v;
