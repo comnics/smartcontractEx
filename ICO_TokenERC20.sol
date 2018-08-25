@@ -19,7 +19,7 @@ contract owned {
     }
 }
 
-contract TokenERC20 {
+contract TokenERC20 is owned{
     // Public variables of the token
     string public name;
     string public symbol;
@@ -54,6 +54,7 @@ contract TokenERC20 {
         name = tokenName;                                   // Set the name for display purposes
         symbol = tokenSymbol;                               // Set the symbol for display purposes
         decimals = tokenDecimals;
+        owner = msg.sender;
     }
     
     //fallback()
